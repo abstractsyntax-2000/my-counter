@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { Palette } from "lucide-react";
-const MAX_COUNT = 10000;
+const MAX_COUNT = 999999;
 
 
 
@@ -64,33 +64,46 @@ const [inputValues, setInputValues] = useState({
   goal: String(DEFAULT_SETTINGS.goal),
 });
   // Load saved settings
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("my-counter");
+// Load saved settings
+useEffect(() => {
+  try {
+    const saved = localStorage.getItem("my-counter");
 
-      if (saved) {
-        const parsed = JSON.parse(saved);
+    if (saved) {
+      const parsed = JSON.parse(saved);
 
-        setSettings({
-          count: Number.isInteger(parsed.count)
-            ? Math.min(MAX_COUNT, Math.max(0, parsed.count))
-            : 0,
-          step: Number.isInteger(parsed.step) &&
-            parsed.step >= 1 && parsed.step <= MAX_COUNT
-            ? parsed.step : 1,
-          goal: Number.isInteger(parsed.goal) &&
-            parsed.goal >= 1 && parsed.goal <= MAX_COUNT
-            ? parsed.goal : 5000,
-          theme: THEMES.some(t => t.value === parsed.theme)
-            ? parsed.theme : "forest-light",
-        });
-      }
-    } catch {
-      console.error("Unable to load saved counter settings.");
+      const loadedSettings: CounterSettings = {
+        count: Number.isInteger(parsed.count)
+          ? Math.min(MAX_COUNT, Math.max(0, parsed.count))
+          : 0,
+
+        step: Number.isInteger(parsed.step) &&
+          parsed.step >= 1 &&
+          parsed.step <= MAX_COUNT
+          ? parsed.step : 1,
+
+        goal: Number.isInteger(parsed.goal) &&
+          parsed.goal >= 1 &&
+          parsed.goal <= MAX_COUNT
+          ? parsed.goal : 5000,
+
+        theme: THEMES.some(t => t.value === parsed.theme)
+          ? parsed.theme : "forest-light",
+      };
+
+      setSettings(loadedSettings);
+
+      setInputValues({
+        step: String(loadedSettings.step),
+        goal: String(loadedSettings.goal),
+      });
     }
+  } catch {
+    console.error("Unable to load saved counter settings.");
+  }
 
-    setHydrated(true);
-  }, []);
+  setHydrated(true);
+}, []);
 
   // Save settings
   useEffect(() => {
@@ -141,22 +154,55 @@ const progress = settings.goal > 0
     }
   };
 
+
 const handleNumberChange = (
   key: "step" | "goal",
   value: string
 ) => {
-    if (value === "") return;
+  // Allow the input to become temporarily empty.
+  setInputValues(prev => ({
+    ...prev,
+    [key]: value,
+  }));
 
-    const number = Number(value);
+  if (value === "") return;
 
-    if (
-      Number.isInteger(number) &&
-      number >= 1 &&
-      number <= MAX_COUNT
-    ) {
-      updateSetting(key, number);
-    }
-  };
+  const number = Number(value);
+
+  if (
+    Number.isInteger(number) &&
+    number >= 1 &&
+    number <= MAX_COUNT
+  ) {
+    updateSetting(key, number);
+  }
+};
+
+const handleNumberBlur = (
+  key: "step" | "goal"
+) => {
+  const value = inputValues[key];
+  const number = Number(value);
+
+  // Restore the previous valid value if input is empty or invalid.
+  if (
+    value === "" ||
+    !Number.isInteger(number) ||
+    number < 1 ||
+    number > MAX_COUNT
+  ) {
+    setInputValues(prev => ({
+      ...prev,
+      [key]: String(settings[key]),
+    }));
+  } else {
+    setInputValues(prev => ({
+      ...prev,
+      [key]: String(number),
+    }));
+  }
+};
+
 
   return (
     <main
@@ -287,16 +333,17 @@ const handleNumberChange = (
             Counting interval
           </label>
 
-          <input
-            id="step"
-            type="number"
-            min="1"
-            max={MAX_COUNT}
-            value={settings.step}
-            onChange={e =>
-              handleNumberChange("step", e.target.value)
-            }
-          />
+<input
+  id="step"
+  type="text"
+  inputMode="numeric"
+  maxLength={6}
+  value={inputValues.step}
+  onChange={e =>
+    handleNumberChange("step", e.target.value)
+  }
+  onBlur={() => handleNumberBlur("step")}
+/>
         </div>
 
         <div className="setting_group">
@@ -304,16 +351,17 @@ const handleNumberChange = (
             Today's goal
           </label>
 
-          <input
-            id="goal"
-            type="number"
-            min="1"
-            max={MAX_COUNT}
-            value={settings.goal}
-            onChange={e =>
-              handleNumberChange("goal", e.target.value)
-            }
-          />
+<input
+  id="goal"
+  type="text"
+  inputMode="numeric"
+  maxLength={6}
+  value={inputValues.goal}
+  onChange={e =>
+    handleNumberChange("goal", e.target.value)
+  }
+  onBlur={() => handleNumberBlur("goal")}
+/>
 
           <p>
             Set your personal counting target for today.
