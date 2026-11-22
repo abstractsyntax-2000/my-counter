@@ -1,0 +1,1047 @@
+
+@import "tailwindcss";
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  background: #F7F5EF;
+  color: #263B30;
+  font-family: var(--font-inter), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+.app_container[data-theme="forest-light"] {
+  --background: #F7F5EF;
+  --surface: #FFFFFF;
+  --primary: #315C45;
+  --text: #263B30;
+  --muted: #888F87;
+  --border: #E1E5DD;
+}
+
+.app_container[data-theme="forest-dark"] {
+  --background: #17231D;
+  --surface: #223329;
+  --primary: #467458;
+  --text: #E5EEE6;
+  --muted: #A5B4A8;
+  --border: #34473A;
+}
+
+.app_container[data-theme="saffron-light"] {
+  --background: #FFF5E9;
+  --surface: #FFFFFF;
+  --primary: #C96B2C;
+  --text: #69391F;
+  --muted: #956B50;
+  --border: #F0DCCB;
+}
+
+.app_container[data-theme="saffron-dark"] {
+  --background: #271B17;
+  --surface: #382720;
+  --primary: #A9572D;
+  --text: #F3DCCB;
+  --muted: #C5A18C;
+  --border: #543B30;
+}
+
+/* =========================
+   OCEAN THEMES
+========================= */
+
+.app_container[data-theme="ocean-light"] {
+  --background: #EFF6FA;
+  --surface: #FFFFFF;
+  --primary: #347B9A;
+  --text: #233E50;
+  --muted: #829AA8;
+  --border: #D9E7EE;
+}
+
+.app_container[data-theme="ocean-dark"] {
+  --background: #14232E;
+  --surface: #203644;
+  --primary: #64A9C5;
+  --text: #E4F0F5;
+  --muted: #9BB5C2;
+  --border: #354E5C;
+}
+
+
+/* =========================
+   LAVENDER THEMES
+========================= */
+
+.app_container[data-theme="lavender-light"] {
+  --background: #F5F1FA;
+  --surface: #FFFFFF;
+  --primary: #8871B5;
+  --text: #39304D;
+  --muted: #968BA9;
+  --border: #E6DDF0;
+}
+
+.app_container[data-theme="lavender-dark"] {
+  --background: #211C2D;
+  --surface: #30283E;
+  --primary: #B39ADB;
+  --text: #F0EAF7;
+  --muted: #B4A8C5;
+  --border: #493D5B;
+}
+
+
+
+/* =========================
+   ROSE THEMES
+========================= */
+
+.app_container[data-theme="rose-light"] {
+  --background: #FFF1F4;
+  --surface: #FFFFFF;
+  --primary: #B83E64;
+  --text: #4D2734;
+  --muted: #936B79;
+  --border: #F0D5DE;
+  --on-primary: #FFFFFF;
+}
+
+.app_container[data-theme="rose-dark"] {
+  --background: #261720;
+  --surface: #37222D;
+  --primary: #E58AA7;
+  --text: #F7EAF0;
+  --muted: #C7A4B1;
+  --border: #553444;
+  --on-primary: #281820;
+}
+
+
+/* =========================
+   MINT THEMES
+========================= */
+
+.app_container[data-theme="mint-light"] {
+  --background: #EDF8F2;
+  --surface: #FFFFFF;
+  --primary: #24785D;
+  --text: #1E4538;
+  --muted: #77988A;
+  --border: #D4E9DE;
+  --on-primary: #FFFFFF;
+}
+
+.app_container[data-theme="mint-dark"] {
+  --background: #142A23;
+  --surface: #203B31;
+  --primary: #6BC7A4;
+  --text: #E4F3EC;
+  --muted: #9ABCAE;
+  --border: #365849;
+  --on-primary: #10251D;
+}
+
+
+/* =========================
+   CORAL THEMES
+========================= */
+
+.app_container[data-theme="coral-light"] {
+  --background: #FFF1EB;
+  --surface: #FFFFFF;
+  --primary: #B94F35;
+  --text: #55352B;
+  --muted: #A98273;
+  --border: #F1D9CF;
+  --on-primary: #FFFFFF;
+}
+
+.app_container[data-theme="coral-dark"] {
+  --background: #2B1D1A;
+  --surface: #3C2923;
+  --primary: #F18A70;
+  --text: #F8E8E1;
+  --muted: #C6A398;
+  --border: #5A4037;
+  --on-primary: #2A1712;
+}
+
+
+/* =========================
+   BERRY THEMES
+========================= */
+
+.app_container[data-theme="berry-light"] {
+  --background: #F6F0FA;
+  --surface: #FFFFFF;
+  --primary: #82449E;
+  --text: #422C50;
+  --muted: #967F9F;
+  --border: #E7D9EE;
+  --on-primary: #FFFFFF;
+}
+
+.app_container[data-theme="berry-dark"] {
+  --background: #261B2D;
+  --surface: #362641;
+  --primary: #C58ADD;
+  --text: #F2E8F7;
+  --muted: #B7A0C2;
+  --border: #4C3859;
+  --on-primary: #24152D;
+}
+
+/* =========================
+   APP CONTAINER
+========================= */
+
+.app_container {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 28px 20px;
+
+  background: var(--background);
+  color: var(--text);
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.app_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+.header {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--primary);
+  margin: 0;
+}
+
+.header {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.app_header p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+/* =========================
+   THEME DROPDOWN
+========================= */
+
+.theme_wrapper {
+  position: relative;
+}
+
+
+.theme_toggle {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+  color: var(--primary);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme_toggle svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.theme_toggle:hover {
+  background: var(--primary);
+  color: var(--surface);
+  border-color: var(--primary);
+}
+
+.theme_toggle:hover svg {
+  transform: rotate(-12deg);
+}
+
+.theme_toggle:active {
+  transform: scale(0.94);
+}
+
+
+
+/* =========================
+   THEME DROPDOWN
+========================= */
+
+.theme_wrapper {
+  position: relative;
+  z-index: 100;
+}
+
+.theme_toggle {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  line-height: 0;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+  color: var(--primary);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme_toggle:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.theme_toggle:active {
+  transform: scale(0.94);
+}
+
+.theme_dropdown {
+  position: absolute;
+
+  top: calc(100% + 10px);
+  right: 0;
+
+  width: 190px;
+  max-height: 280px;
+  overflow-y: auto;
+
+  padding: 8px;
+
+  background: var(--surface);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+
+  z-index: 1000;
+}
+
+.theme_dropdown button {
+  display: block;
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  text-align: left;
+
+  background: transparent;
+  color: var(--text);
+
+  font-size: 13px;
+}
+
+.theme_dropdown button:hover {
+  background: var(--background);
+}
+
+.theme_dropdown button.selected {
+  background: var(--background);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+
+/* =========================
+   COUNTER CARD
+========================= */
+
+.counter_container {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+  padding: 32px 20px;
+  margin-top: 36px;
+
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.counter_heading {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.counter_display {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 16px 0;
+  font-variant-numeric: tabular-nums;
+}
+.counter_display {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: var(--primary);
+  margin: 16px 0;
+  font-variant-numeric: tabular-nums;
+}
+/* =========================
+   PROGRESS
+========================= */
+
+.progress_section {
+  margin-top: 24px;
+}
+
+.progress_labels {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.progress_labels strong {
+  color: var(--primary);
+}
+
+.progress_track {
+  height: 9px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress_fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.progress_description {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.action_buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.action_buttons button {
+  flex: 1;
+  min-height: 56px;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+  color: var(--primary);
+
+  font-size: 20px;
+}
+
+.action_buttons button span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+.settings_container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.settings_container h3 {
+  font-size: 15px;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+
+.setting_group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.setting_group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.setting_group input {
+  width: 100%;
+  padding: 13px;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: var(--background);
+  color: var(--text);
+
+  outline-color: var(--primary);
+}
+
+.setting_group p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.app_footer {
+  text-align: center;
+  color: var(--muted);
+
+  font-size: 11px;
+  margin-top: 28px;
+  padding-bottom: 12px;
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 360px) {
+  .app_container {
+    padding: 24px 16px;
+  }
+
+  .counter_display {
+    font-size: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+/* =========================
+   MODERN COUNTING BUTTON
+========================= */
+
+.counting_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.increment {
+  width: 100%;
+  max-width: 280px;
+  min-height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  border: none;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    145deg,
+    var(--primary),
+    color-mix(in srgb, var(--primary), black 18%)
+  );
+
+color: var(--on-primary, #FFFFFF);
+
+  font-size: 38px;
+  font-weight: 700;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.2s ease;
+
+  touch-action: manipulation;
+}
+
+.increment span {
+  line-height: 1;
+}
+
+.increment small {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  opacity: 0.85;
+}
+
+.increment:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+.counting_hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+
+.setting_group input {
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 15px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--background);
+  color: var(--text);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.setting_group input:focus {
+  border-color: var(--primary);
+  outline: 2px solid color-mix(
+    in srgb,
+    var(--primary),
+    transparent 85%
+  );
+}
+
+
+/* =========================
+   PLAYFUL POP
+========================= */
+
+.app_container[data-theme="playful"] {
+  --background: #FFF4D6;
+  --surface: #FFFFFF;
+  --primary: #E94E77;
+  --text: #332747;
+  --muted: #846F87;
+  --border: #F4D9A8;
+  --on-primary: #FFFFFF;
+}
+
+
+
+
+/* =========================
+   ARCADE NIGHT
+========================= */
+
+.app_container[data-theme="arcade"] {
+  --background: #130D2B;
+  --surface: #21183E;
+  --primary: #00D9FF;
+  --text: #F2EDFF;
+  --muted: #B1A3CF;
+  --border: #4B3B70;
+  --on-primary: #10102A;
+}
+
+
+
+
+/* =========================
+   PLAYFUL POP
+========================= */
+
+.app_container[data-theme="playful"] {
+  --background: #FFF9DF;
+  --surface: #FFFFFF;
+  --primary: #2563EB;
+  --text: #243451;
+  --muted: #78869D;
+  --border: #F1E2A9;
+  --on-primary: #FFFFFF;
+}
+
+
+/* PLAYFUL POP DETAILS */
+
+.app_container[data-theme="playful"] .increment {
+  background: linear-gradient(
+    120deg,
+    #2563EB,
+    #0EA5E9 65%,
+    #14B8A6
+  );
+
+  color: #FFFFFF;
+
+  box-shadow:
+    0 8px 22px rgba(37, 99, 235, 0.22);
+}
+
+.app_container[data-theme="playful"] .progress_fill {
+  background: linear-gradient(
+    90deg,
+    #2563EB,
+    #0EA5E9,
+    #FACC15,
+    #F97316
+  );
+}
+
+.app_container[data-theme="playful"] .counter_container {
+  border-color: #F1D879;
+
+  box-shadow:
+    0 8px 28px rgba(37, 99, 235, 0.08);
+}
+
+.app_container[data-theme="playful"] .counter_heading {
+  color: #D49B16;
+}
+
+
+/* =========================
+   ARCADE NIGHT DETAILS
+========================= */
+
+.app_container[data-theme="arcade"] .increment {
+  background: linear-gradient(
+    120deg,
+    #00D9FF,
+    #8158FF 55%,
+    #FF4FC8
+  );
+
+  color: #FFFFFF;
+
+  box-shadow:
+    0 0 12px rgba(0, 217, 255, 0.3),
+    0 8px 26px rgba(129, 88, 255, 0.28);
+}
+
+.app_container[data-theme="arcade"] .counter_container {
+  border-color: #604B91;
+
+  box-shadow:
+    0 0 22px rgba(129, 88, 255, 0.12);
+}
+
+.app_container[data-theme="arcade"] .progress_fill {
+  background: linear-gradient(
+    90deg,
+    #00D9FF,
+    #8158FF,
+    #FF4FC8
+  );
+
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.3);
+}
+
+.app_container[data-theme="arcade"] .theme_toggle {
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.12);
+}
+
+
+
+
+/* =========================
+   MARKET TERMINAL
+   HIGH ENERGY EDITION
+========================= */
+
+.app_container[data-theme="market-terminal"] {
+  --background: #080C12;
+  --surface: #111A24;
+  --primary: #00F59B;
+  --text: #F0F5F3;
+  --muted: #8A9A9A;
+  --border: #263641;
+  --on-primary: #04150E;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #14271F 0%,
+      #080C12 55%,
+      #060910 100%
+    );
+}
+
+
+/* COUNTER DISPLAY */
+
+.app_container[data-theme="market-terminal"] .counter_display {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: #00F59B;
+  letter-spacing: -2px;
+  text-shadow: 0 0 18px rgba(0, 245, 155, 0.22);
+}
+
+
+/* COUNTER CARD */
+
+.app_container[data-theme="market-terminal"] .counter_container {
+  background: #111A24;
+  border: 1px solid #263F3C;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(0, 245, 155, 0.04);
+}
+
+
+/* INCREMENT BUTTON - TRADING GREEN */
+
+.app_container[data-theme="market-terminal"] .increment {
+  background: linear-gradient(
+    135deg,
+    #00F59B,
+    #00B86B
+  );
+
+  color: #04150E;
+
+  box-shadow:
+    0 0 12px rgba(0, 245, 155, 0.25),
+    0 8px 22px rgba(0, 0, 0, 0.3);
+}
+
+.app_container[data-theme="market-terminal"] .increment:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    #39FFB1,
+    #00D982
+  );
+
+  box-shadow:
+    0 0 22px rgba(0, 245, 155, 0.4);
+}
+
+
+/* PROGRESS BAR */
+
+.app_container[data-theme="market-terminal"] .progress_track {
+  background: #263641;
+}
+
+.app_container[data-theme="market-terminal"] .progress_fill {
+  background: linear-gradient(
+    90deg,
+    #00A86B,
+    #00F59B
+  );
+
+  box-shadow:
+    0 0 12px rgba(0, 245, 155, 0.45);
+}
+
+
+/* DECREASE - BRIGHT RED */
+
+.app_container[data-theme="market-terminal"] .action_buttons .decrement {
+  background: #35121A;
+  color: #FF4561;
+
+  border: 1px solid #FF304F;
+
+  box-shadow:
+    0 0 10px rgba(255, 48, 79, 0.12);
+}
+
+.app_container[data-theme="market-terminal"] .action_buttons .decrement:hover:not(:disabled) {
+  background: #521722;
+  border-color: #FF6379;
+
+  box-shadow:
+    0 0 16px rgba(255, 48, 79, 0.25);
+}
+
+
+/* RESET - SOLID CRIMSON */
+
+.app_container[data-theme="market-terminal"] .action_buttons .reset {
+  background: linear-gradient(
+    135deg,
+    #FF304F,
+    #C8102E
+  );
+
+  color: #FFFFFF;
+  border: 1px solid #FF526B;
+
+  box-shadow:
+    0 0 12px rgba(255, 48, 79, 0.2);
+}
+
+.app_container[data-theme="market-terminal"] .action_buttons .reset:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    #FF526B,
+    #E6193D
+  );
+
+  box-shadow:
+    0 0 20px rgba(255, 48, 79, 0.35);
+}
+
+
+/* SETTINGS PANEL */
+
+.app_container[data-theme="market-terminal"] .settings_container {
+  background: #111A24;
+  border: 1px solid #263641;
+  border-radius: 16px;
+}
+
+.app_container[data-theme="market-terminal"] .setting_group input {
+  background: #080F18;
+  border-color: #344653;
+  color: #00F59B;
+}
+
+
+/* HEADER AND THEME BUTTON */
+
+.app_container[data-theme="market-terminal"] .header {
+  color: #00F59B;
+}
+
+.app_container[data-theme="market-terminal"] .theme_toggle {
+  background: #15251F;
+  color: #00F59B;
+  border-color: #167C57;
+  box-shadow: 0 0 12px rgba(0, 245, 155, 0.10);
+}
+
+.app_container[data-theme="market-terminal"] .theme_toggle:hover {
+  background: #00B86B;
+  color: #FFFFFF;
+}
+
+
+/* THEME DROPDOWN */
+
+.app_container[data-theme="market-terminal"] .theme_dropdown {
+  background: #111A24;
+  border-color: #344653;
+}
+
+.app_container[data-theme="market-terminal"] .theme_dropdown button:hover,
+.app_container[data-theme="market-terminal"] .theme_dropdown button.selected {
+  background: #1B3028;
+  color: #00F59B;
+}
